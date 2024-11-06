@@ -1,1 +1,1 @@
-Demo:https://shein-clone-khaki.vercel.app/
+https://shein-clone-khaki.vercel.app/
