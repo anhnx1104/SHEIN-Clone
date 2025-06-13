@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Detail - SHEIN</title>
+
+    <!-- favicon -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo/shein-favicon.png"
+      type="image/x-icon"
+    />
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="./assets/css/style-prefix.css" />
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="overlay" data-overlay></div>
+
+    <!-- HEADER -->
+    <header>
+      <div class="header-top">
+        <div class="container">
+          <ul class="header-social-container">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+          </ul>
+
+          <div class="header-alert-news">
+            <p>
+              <b>XUAN ANH NGUYEN CLONE SHEIN -</b>
+              Mục đích chỉ để học
+            </p>
+          </div>
+
+          <div class="header-top-actions">
+            <select name="currency">
+              <option value="usd">USD &dollar;</option>
+              <option value="eur">EUR &euro;</option>
+            </select>
+
+            <select name="language">
+              <option value="en-US">English</option>
+              <option value="es-ES">Espa&ntilde;ol</option>
+              <option value="fr">Fran&ccedil;ais</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main">
+        <div class="container">
+          <a href="index.html" class="header-logo">
+            <img
+              src="./assets/images/logo/logo.svg"
+              alt="SHEIN's logo"
+              width="120"
+              height="36"
+            />
+          </a>
+
+          <div class="header-search-container">
+            <input
+              type="search"
+              name="search"
+              class="search-field"
+              placeholder="Enter your product name..."
+            />
+
+            <button class="search-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+          </div>
+
+          <div class="header-user-actions">
+            <button class="action-btn">
+              <ion-icon name="person-outline"></ion-icon>
+            </button>
+
+            <button class="action-btn">
+              <ion-icon name="heart-outline"></ion-icon>
+              <span class="count">0</span>
+            </button>
+
+            <button class="action-btn">
+              <ion-icon name="bag-handle-outline"></ion-icon>
+              <span class="count">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- PRODUCT DETAIL SECTION -->
+    <section class="product-detail">
+      <div class="container">
+        <div class="product-detail-content">
+          <div class="product-detail-gallery">
+            <div class="product-detail-image">
+              <img src="" alt="Product Image" id="main-product-image" />
+            </div>
+            <div class="product-detail-thumbnails">
+              <!-- Thumbnails will be added dynamically -->
+            </div>
+          </div>
+
+          <div class="product-detail-info">
+            <h1 class="product-title" id="product-title"></h1>
+            <div class="product-price" id="product-price"></div>
+            <div class="product-description" id="product-description"></div>
+            
+            <div class="product-actions">
+              <div class="quantity-selector">
+                <button class="quantity-btn minus">-</button>
+                <input type="number" value="1" min="1" class="quantity-input" />
+                <button class="quantity-btn plus">+</button>
+              </div>
+              
+              <button class="add-to-cart-btn">
+                <ion-icon name="bag-handle-outline"></ion-icon>
+                Add to Cart
+              </button>
+              
+              <button class="add-to-wishlist-btn">
+                <ion-icon name="heart-outline"></ion-icon>
+                Add to Wishlist
+              </button>
+            </div>
+
+            <div class="product-meta">
+              <div class="product-category">
+                <span>Category:</span>
+                <span id="product-category"></span>
+              </div>
+              <div class="product-sku">
+                <span>SKU:</span>
+                <span id="product-sku"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- custom js link -->
+    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/product-detail.js"></script>
+    <script src="./assets/js/cart.js"></script>
+    <script>
+      // Initialize quantity selector
+      const quantityInput = document.querySelector('.quantity-input');
+      const minusBtn = document.querySelector('.quantity-btn.minus');
+      const plusBtn = document.querySelector('.quantity-btn.plus');
+      const addToCartBtn = document.querySelector('.add-to-cart-btn');
+
+      minusBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 1) {
+          quantityInput.value = currentValue - 1;
+        }
+      });
+
+      plusBtn.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+      });
+
+      addToCartBtn.addEventListener('click', () => {
+        const quantity = parseInt(quantityInput.value);
+        addToCart(productId, quantity);
+      });
+    </script>
+
+    <!-- ionicon link -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html> 
